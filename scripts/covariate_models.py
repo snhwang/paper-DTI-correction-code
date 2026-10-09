@@ -63,10 +63,14 @@ def build(cohort: str) -> pd.DataFrame:
     # is the warped mask, and those counts are that mask's own size.
     res = pd.read_csv(HERE / ("measured_pvs_axis_hcpa_b1500_all.csv"
                               if cohort == "hcpa" else
-                              "measured_pvs_axis_dlbs.csv"))
+                              "measured_pvs_axis_dlbs_all.csv"))
     res["Subject_ID"] = res.Subject_ID.astype(str)
     res["Visit"] = res.Visit.astype(str)
     res = res.rename(columns={"cross": "refined_slab"})
+    # region counts come from the sphere table below, as the comment above says;
+    # the all-sessions index table carries its own n_proj/n_assoc, which would
+    # otherwise collide in the merge
+    res = res.drop(columns=[c for c in ("n_proj", "n_assoc") if c in res.columns])
     if cohort == "hcpa":
         src = pd.read_csv(DIFF / "HCP" / "hcpa_alps_spheres_5mm.csv")
         mot = pd.read_csv(DIFF / "HCP" / "hcpa_motion.csv")

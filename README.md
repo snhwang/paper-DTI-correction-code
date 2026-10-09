@@ -181,12 +181,11 @@ manuscript. Every script behind a number in the paper is in the chain, and each
 one is documented at the top of its own file, which is the best place to start
 when tracing a single value.
 
-`scripts/verify_manuscript.py` checks the manuscript's numbers against those
-outputs. It needs the manuscript source, which is not published here.
-
-## Licence
-
-MIT.
+`scripts/verify_r2.py` checks every number the manuscript states against those
+outputs, in the sentence that states it. It needs the manuscript source, which is
+not published here. Without it, it checks only that the tables regenerate. The
+first revision's verifier, and the two tools that maintained it, were removed
+because they apply only to the first revision's text.
 
 ## License
 

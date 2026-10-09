@@ -51,8 +51,9 @@ VARIANTS = ["classic", "cross", "v2_slab", "anat_x", "pv_perp"]
 
 
 def path_for(cohort: str, fa: float) -> Path:
+    # R2: DLBS uses every participant, like HCP-A (--all-sessions at each floor)
     base = ("measured_pvs_axis_hcpa_b1500_all" if cohort == "hcpa"
-            else "measured_pvs_axis_dlbs")
+            else "measured_pvs_axis_dlbs_all")
     sfx = "" if abs(fa - 0.2) < 1e-9 else f"_fa{fa:g}"
     return HERE / f"{base}{sfx}.csv"
 
@@ -87,11 +88,11 @@ def partial_r(x, y, z) -> float:
 
 
 def main() -> None:
-    new = not OUT.exists()
-    fh = OUT.open("a", newline="", encoding="utf-8")
+    # overwrite, not append: appending stacked every rerun on the last, so the
+    # file held stale DLBS rows from the 379-session run beside the current ones
+    fh = OUT.open("w", newline="", encoding="utf-8")
     w = csv.DictWriter(fh, FIELDS)
-    if new:
-        w.writeheader()
+    w.writeheader()
 
     def emit(**row):
         w.writerow(row)
