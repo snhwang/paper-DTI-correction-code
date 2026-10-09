@@ -134,28 +134,26 @@ as undefined. `scripts/beyond_ratio_adjusted.py` shows the guard.
 
 ## Region placement
 
-The regions are 5 mm spheres drawn in native space at the centre of the warped
-template mask. This is the primary analysis and the default, so no environment
-variable is needed to reproduce the manuscript.
+The regions are the four 5 mm spheres distributed with the reference
+implementation of Liu et al., carried into each participant's native space by
+the inverse of the template warp. The warp is nonlinear, so each sphere arrives
+as an ellipsoid and its volume varies between participants, as the paper's
+Methods describe. This is the conventional placement and the one the paper
+uses. It is the default, so no environment variable is needed to reproduce the
+manuscript.
 
-The first submission measured inside the warped mask itself, which arrives
-distorted in both size and shape. Region size varied 7.8-fold across HCP-A and
-3.1-fold across DLBS, which is why the age models carried a region-volume
-covariate. Redrawing the sphere holds size to within 6% and 15% respectively,
-so the covariate is no longer load-bearing. Registration still decides where
-the region sits, which is what it is good at, and no longer decides how big it
-is or what shape.
+A fixed-size alternative keeps only the centre of the warped region and draws
+a fresh sphere around it in native space. Set `ALPS_SPHERE_MM=5` to use it.
+Those runs write to `_sphere5` filenames, so neither placement can overwrite
+the other:
 
-Set `ALPS_SPHERE_MM=0` to restore the warped masks. Those runs write to
-`_warpedmask` filenames, so neither placement can overwrite the other:
-
-    ALPS_SPHERE_MM=0 ALPS_TENSOR_SUFFIX=_b1500 \
+    ALPS_SPHERE_MM=5 ALPS_TENSOR_SUFFIX=_b1500 \
         python scripts/measured_pvs_axis.py --cohort hcpa --all-sessions
 
-`scripts/resphere_impact.py` reports both placements side by side for every
-quantity the manuscript states. `alps_variants` in `scripts/tn_alps.py` reads
-the same variable, so the comparators cannot drift to a different placement
-from the variants they are tabulated beside.
+`scripts/resphere_impact.py` reports both placements side by side.
+`alps_variants` in `scripts/tn_alps.py` reads the same variable, so the
+comparators cannot drift to a different placement from the variants they are
+tabulated beside.
 
 ## Running
 

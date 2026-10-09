@@ -51,9 +51,10 @@ B1500 = {"ALPS_TENSOR_SUFFIX": "_b1500"}
 # (group, label, argv, env, outputs, approx_minutes)
 #
 # The index group comes first because everything else reads its two tables.
-# Both are measured inside 5 mm spheres redrawn in native space, which is the
-# default, so no placement variable appears here. ALPS_SPHERE_MM=0 reproduces
-# the first submission's warped masks into _warpedmask filenames instead.
+# Both are measured inside the template regions carried into native space by
+# the warp, which is the default, so no placement variable appears here.
+# ALPS_SPHERE_MM=5 redraws fixed-size spheres at the warped centres instead,
+# into _sphere5 filenames.
 STEPS = [
     ("index", "variant indices, HCP-A",
      ["measured_pvs_axis.py", "--cohort", "hcpa", "--all-sessions"], B1500,
