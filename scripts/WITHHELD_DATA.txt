@@ -1,0 +1,10 @@
+These derived files are not redistributed. They carry HCP-A participant
+identifiers, and the AABC Consortium Data Use Terms do not permit it.
+Regenerate them from your own HCP-A access with the upstream scripts.
+
+comparators_hcpa.csv
+head_rotation_hcpa.csv
+hemisphere_age_hcpa_b1500.csv
+ld_alps_hcpa.csv
+measured_pvs_axis_hcpa_b1500_all.csv
+roi_placement_quality_hcpa_b1500.csv

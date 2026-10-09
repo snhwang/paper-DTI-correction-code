@@ -1,0 +1,5 @@
+index,slope_pct_per_deg,ci_lo,ci_hi,n_pairs,n_participants
+Classic,0.7366,0.2585,1.2633,290,156
+Refined,0.2355,-0.2147,0.842,290,156
+Measured axis,-0.0159,-0.2973,0.328,290,156
+lambda2/lambda3,0.0636,-0.1607,0.3379,290,156

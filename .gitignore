@@ -5,3 +5,29 @@ __pycache__/
 !requirements.txt
 *.log
 .venv/
+
+# Results are ignored by default, which is what keeps a locally generated
+# HCP-A table from being committed by accident. The derived values that
+# may be redistributed are listed back in one by one, so adding a file
+# here is a deliberate act.
+!scripts/WITHHELD_DATA.txt
+!scripts/comparators_dlbs.csv
+!scripts/fa_threshold_sweep.csv
+!scripts/head_rotation_dlbs.csv
+!scripts/hemisphere_age_dlbs.csv
+!scripts/ld_alps_dlbs.csv
+!scripts/measured_pvs_axis_dlbs.csv
+!scripts/measured_pvs_axis_dlbs_all.csv
+!scripts/r2_bias.csv
+!scripts/r2_composite.csv
+!scripts/r2_decomposition.csv
+!scripts/r2_numbers.csv
+!scripts/r2_reliability_parts.csv
+!scripts/r2_reorientation.csv
+!scripts/r2_repositioning.csv
+!scripts/r2_repositioning_pairs.csv
+!scripts/r2_text_numbers.csv
+!scripts/roi_placement_quality_dlbs_all.csv
+!scripts/slab_prescription_dlbs.csv
+!scripts/tract_direction_variation.csv
+!scripts/vecreg_comparison.csv

@@ -1,0 +1,4 @@
+index,icc,rel_within_var_vs_classic,age_r,r_with_ratio,n_sessions,n_participants
+Classic,0.594,1.0,-0.396,0.605,379,156
+Template reorientation,0.574,0.861,-0.335,0.622,379,156
+Refined,0.455,0.886,-0.353,0.551,379,156
