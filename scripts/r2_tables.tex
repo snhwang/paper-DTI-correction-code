@@ -1,0 +1,74 @@
+\begin{table}[pos=tb]
+\caption{Head pose and its association with age, first session of each participant. DLBS keeps the head position of each session and HCP-A has it removed during preprocessing. Each axis enters as its absolute value.}
+\label{tbl:pose-age}
+\begin{tabular*}{\tblwidth}{@{}LCC@{}}
+\toprule
+\textbf{Measure} & \textbf{DLBS ($n=283$)} & \textbf{HCP-A ($n=809$)} \\
+\midrule
+Median total rotation & $10.4^{\circ}$ & $1.6^{\circ}$ \\
+Total rotation beyond $10^{\circ}$ (DLBS) or $5^{\circ}$ (HCP-A) & $54.4\%$ & $3.2\%$ \\
+Pitch against age & $r=+0.369$, $p<0.001$ & $r=-0.028$, $p=0.43$ \\
+Yaw against age & $r=+0.240$, $p<0.001$ & $r=+0.029$, $p=0.42$ \\
+Roll against age & $r=+0.075$, $p=0.21$ & $r=-0.012$, $p=0.73$ \\
+Total rotation against age & $r=+0.376$, $p<0.001$ & $r=-0.015$, $p=0.68$ \\
+\bottomrule
+\end{tabular*}
+\end{table}
+
+\begin{table*}[pos=tb]
+\caption{Division of each index's age decline into radial anisotropy and axis error, using Eq.~\eqref{eq:factor}. Slopes of the logarithm on age, in percent per decade, first session of each participant. The total is the sum of the $\lambda_2/\lambda_3$ term and the axis-error term. The pose-adjusted column adds absolute pitch and total rotation to the axis-error model. The share is the axis-error term divided by the total. Brackets are $95\%$ intervals from $2000$ participant bootstrap resamples.}
+\label{tbl:decomposition}
+\begin{tabular*}{\tblwidth}{@{}LCCCCC@{}}
+\toprule
+\textbf{Index} & \textbf{Total} & \textbf{$\lambda_2/\lambda_3$ term} & \textbf{Axis-error term} & \textbf{Axis error, pose-adjusted} & \textbf{Axis-error share (\%)} \\
+\midrule
+\multicolumn{6}{@{}l}{\textit{DLBS, $n=283$}} \\
+Classic & $-3.78$ & $-2.32$ & $-1.46$ [$-2.08$, $-0.83$] & $-0.59$ [$-1.11$, $-0.06$] & $39$ [$26$, $49$] \\
+Refined & $-2.56$ & $-2.32$ & $-0.24$ [$-0.80$, $+0.36$] & $-0.29$ [$-0.82$, $+0.21$] & $9$ [$-18$, $27$] \\
+Measured axis & $-2.84$ & $-2.32$ & $-0.52$ [$-0.81$, $-0.23$] & $-0.48$ [$-0.78$, $-0.16$] & $18$ [$9$, $27$] \\
+\multicolumn{6}{@{}l}{\textit{HCP-A, $n=809$}} \\
+Classic & $-3.01$ & $-2.80$ & $-0.21$ [$-0.45$, $+0.04$] & $-0.22$ [$-0.46$, $+0.03$] & $7$ [$-1$, $14$] \\
+Refined & $-2.88$ & $-2.80$ & $-0.08$ [$-0.35$, $+0.17$] & $-0.08$ [$-0.34$, $+0.17$] & $3$ [$-6$, $11$] \\
+Measured axis & $-3.34$ & $-2.80$ & $-0.54$ [$-0.70$, $-0.38$] & $-0.54$ [$-0.70$, $-0.38$] & $16$ [$12$, $20$] \\
+\bottomrule
+\end{tabular*}
+\end{table*}
+
+\begin{table*}[pos=tb]
+\caption{Each index against the bound $\bar\rho$ ($\lambda_2/\lambda_3$), first session of each participant. Attained is the median ratio of the index to $\lambda_2/\lambda_3$. The age columns give the Pearson correlation with age before and after $\lambda_2/\lambda_3$ is partialled out, with an asterisk marking $p<0.05$. LD-ALPS places its own regions, so its ratio to $\lambda_2/\lambda_3$ compares different voxels. Template reorientation applies only to DLBS, since HCP-A was already aligned.}
+\label{tbl:bound}
+\begin{tabular*}{\tblwidth}{@{}LCCCCCCCC@{}}
+\toprule
+ & \multicolumn{2}{c}{\textbf{Attained}} & \multicolumn{2}{c}{\textbf{$r$ with $\lambda_2/\lambda_3$}} & \multicolumn{2}{c}{\textbf{Age, raw}} & \multicolumn{2}{c}{\textbf{Age, partialled}} \\
+\textbf{Index} & HCP-A & DLBS & HCP-A & DLBS & HCP-A & DLBS & HCP-A & DLBS \\
+\midrule
+Classic & $0.90$ & $0.82$ & $0.88$ & $0.59$ & $-0.430$ & $-0.451$ & $+0.120$* & $-0.256$* \\
+Refined & $0.92$ & $0.87$ & $0.85$ & $0.50$ & $-0.436$ & $-0.381$ & $+0.057$ & $-0.199$* \\
+Measured axis & $0.95$ & $0.92$ & $0.94$ & $0.90$ & $-0.518$ & $-0.422$ & $-0.033$ & $-0.029$ \\
+\(\lambda_2/\lambda_3\) & $1$ & $1$ & $1$ & $1$ & $-0.543$ & $-0.454$ & -- & -- \\
+\midrule
+ALPS-PAS \cite{ref3} & $0.95$ & $0.91$ & $0.95$ & $0.58$ & $-0.530$ & $-0.445$ & $-0.045$ & $-0.248$* \\
+LD-ALPS \cite{ref4} & $0.91$ & $0.87$ & $0.89$ & $0.52$ & $-0.535$ & $-0.419$ & $-0.136$* & $-0.238$* \\
+Template reorientation \cite{ref2} & -- & $0.85$ & -- & $0.57$ & -- & $-0.385$ & -- & $-0.174$* \\
+\bottomrule
+\end{tabular*}
+\end{table*}
+
+\begin{table}[pos=tb]
+\caption{Reliability between visits, ICC(1,1), over participants with repeat visits ($628$ in HCP-A and $156$ in DLBS).}
+\label{tbl:reliability}
+\begin{tabular*}{\tblwidth}{@{}LCC@{}}
+\toprule
+\textbf{Index} & \textbf{HCP-A} & \textbf{DLBS} \\
+\midrule
+Classic & $0.957$ & $0.594$ \\
+Refined & $0.950$ & $0.455$ \\
+Measured axis & $0.954$ & $0.518$ \\
+\(\lambda_2/\lambda_3\) & $0.950$ & $0.545$ \\
+\midrule
+ALPS-PAS \cite{ref3} & $0.944$ & $0.497$ \\
+LD-ALPS \cite{ref4} & $0.921$ & $0.455$ \\
+Template reorientation \cite{ref2} & -- & $0.574$ \\
+\bottomrule
+\end{tabular*}
+\end{table}

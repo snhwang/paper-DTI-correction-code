@@ -1,35 +1,45 @@
-# Analysis scripts
+# paper-DTI-correction-code
 
 Every script that produced a number, table or figure in *Head Position
 Confounds DTI-ALPS, While Its Correction Approaches Radial Anisotropy*
-(Magnetic Resonance Imaging, MAGRESIMAGING-D-26-00371).
+(Magnetic Resonance Imaging, MAGRESIMAGING-D-26-00371), together with the
+derived values that can be redistributed.
 
 These are the working scripts, not a packaged tool. They are published so that
 any result in the paper can be traced to the code that made it. Expect to edit
-paths before anything runs.
+paths before anything that reads images will run.
 
-## What you can run, and what you cannot
+## What runs in a fresh clone
 
-There is a chain: source images, then processing, then cached per-session CSVs,
-then the analyses that read those CSVs. Only the code is published here, so where
-you can join the chain depends on what data you have.
+Every table in the paper, and the check on every number in it:
 
-- **30 scripts read imaging data.** They need the cohorts below, FSL, and the
-  processed sessions on disk.
-- **39 scripts read a cached CSV that an earlier script wrote.** They fail with a
-  `FileNotFoundError` in a fresh clone until you have run the upstream script
-  that produces their input. That is expected, not a fault.
-- **24 need neither**, and run immediately. `scripts/sorting_bias_floor.py` is
-  the clearest example: it simulates the acquisition and reproduces the
-  eigenvalue-sorting noise floor quoted in the paper, with no data at all.
+    uv venv
+    uv pip install -r requirements.txt
+    cd scripts
+    python r2_latex_tables.py     # regenerates the four tables as r2_tables.tex
+    python verify_r2.py           # confirms they regenerate byte for byte
 
-`scripts/tract_orthogonality.py` sits across the boundary. Its first half is
-simulation and always runs. Its second half reads the measured-axis tables and
-says so and skips if they are absent, so a fresh clone still reproduces the
-rotation-sensitivity table in Appendix A.
+`verify_r2.py` reads the manuscript when it is beside it and then checks every
+number the text states against the CSV it came from. The manuscript is not
+published here, so in this repository it checks the tables instead and says
+which checks it skipped.
 
-Result files are not published. HCP-A derived values are restricted by the AABC
-Data Use Terms, and the final values for everything are in the manuscript.
+`scripts/sorting_bias_floor.py` also needs nothing: it simulates the
+acquisition and reproduces the eigenvalue-sorting noise floor quoted in the
+paper.
+
+## What needs the images
+
+There is a chain: source images, then processing, then per-session CSVs, then
+the analyses that read those CSVs. The per-session CSVs for DLBS are here. The
+ones for HCP-A are not, because they carry participant identifiers and the AABC
+Data Use Terms do not permit redistributing them. `scripts/WITHHELD_DATA.txt`
+names the six files and what regenerates them.
+
+So of the second-round analyses, `r2_latex_tables.py`, `r2_reorientation.py`
+and `r2_repositioning.py` run here, and the other seven need your own HCP-A
+access. Scripts that read images need the cohorts below, FSL, and the processed
+sessions on disk.
 
 ## Data
 
@@ -39,7 +49,8 @@ Data Use Terms, and the final values for everything are in the manuscript.
   are here.
 - **DLBS** — OpenNeuro, <https://openneuro.org/datasets/ds004856>, version 1.2.0.
 - **Trigeminal neuralgia** — OpenNeuro,
-  <https://openneuro.org/datasets/ds005713>, version 2.0.2, CC0.
+  <https://openneuro.org/datasets/ds005713>, version 2.0.2, CC0. Used in
+  earlier work, not in this revision. Its scripts are kept for the record.
 
 ## Install
 
@@ -176,3 +187,7 @@ outputs. It needs the manuscript source, which is not published here.
 ## Licence
 
 MIT.
+
+## License
+
+MIT. See `LICENSE`.
